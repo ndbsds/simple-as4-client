@@ -28,8 +28,7 @@ pipeline {
                     stash name: 'built-project', allowEmpty: false, useDefaultExcludes: false, includes: '**'
                 }
 
-                archiveArtifacts artifacts: 'standalone-application/build/libs/OftpGwStandalone-*.jar', followSymlinks: false
-                archiveArtifacts artifacts: 'webapp-application/build/libs/OftpGwWebapp-*.war', followSymlinks: false
+                archiveArtifacts artifacts: 'as4-client/build/libs/as4-client-*.jar', followSymlinks: false
             }
         }
 
