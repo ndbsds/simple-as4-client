@@ -2,8 +2,6 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id("com.github.bjornvester.xjc") version "1.6.0"
-    id 'maven'
-    id 'signing'
 }
 
 group 'io.github.skat'
@@ -26,50 +24,38 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
-// https://medium.com/@shanemyrick/publishing-to-github-packages-with-gradle-and-github-actions-4ad842634c4e
 publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/skat/simple-as4-client")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+    if (project.hasProperty('repoUser')) {
+        repositories {
+            maven {
+                allowInsecureProtocol true
+                credentials {
+                    username repoUser
+                    password repoPassword
+                }
+
+                if (version.contains("SNAPSHOT")) {
+                    url "$artifactoryBaseUrl/libs-snapshot-local"
+                } else {
+                    url "$artifactoryBaseUrl/libs-release-local"
+                }
             }
         }
     }
     publications {
-        gpr(MavenPublication) {
-            from(components.java)
+        mavenJava(MavenPublication) {
+            artifactId = 'skat-client'
+            from components.java
         }
+
     }
 }
 
 xjc {
     bindingFiles = project.files("$projectDir/src/main/resources/bindings/binding.xjb")
     xjcVersion.set("2.3.3")
-    //outputJavaDir "here"
-
+    options.add("-verbose")
 }
-
-task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives javadocJar, sourcesJar
-}
-
-signing {
-    sign configurations.archives
-}
-
 
 test {
     useJUnitPlatform()
