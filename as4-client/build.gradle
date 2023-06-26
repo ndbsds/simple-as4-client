@@ -4,7 +4,7 @@ plugins {
     //id("com.github.bjornvester.xjc") version "1.6.0"
 }
 
-group 'io.github.skat'
+group 'com.nttdata.io.github.skat'
 archivesBaseName = "as4-client"
 version '2.1.0'
 
@@ -56,7 +56,7 @@ publishing {
     bindingFiles = project.files("$projectDir/src/main/resources/bindings/binding.xjb")
     xjcVersion.set("2.3.3")
     options.add("-verbose")
-}
+}*/
 
 test {
     useJUnitPlatform()
