@@ -9,6 +9,7 @@ pipeline {
     }
 
     options {
+        skipDefaultCheckout true
         parallelsAlwaysFailFast()
         buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '30'))
     }
@@ -16,6 +17,7 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
+                checkout scmGit(branches: [[name: '**']], extensions: [], gitTool: 'default', userRemoteConfigs: [[credentialsId: 'ndbsds-bot-ci', url: 'https://github.com/ndbsds/simple-as4-client.git']])
                 sh 'chmod +x gradlew'
                 sh './gradlew jar'
 
