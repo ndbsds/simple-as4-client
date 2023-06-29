@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 
 
 /**
- * &lt;p&gt;Java-Klasse für NotUnderstoodType complex type.
+ * &lt;p&gt;Java-Klasse fuer NotUnderstoodType complex type.
  * 
  * &lt;p&gt;Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 

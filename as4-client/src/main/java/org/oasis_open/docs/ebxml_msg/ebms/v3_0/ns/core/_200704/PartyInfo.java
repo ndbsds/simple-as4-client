@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * &lt;p&gt;Java-Klasse für PartyInfo complex type.
+ * &lt;p&gt;Java-Klasse fuer PartyInfo complex type.
  * 
  * &lt;p&gt;Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 

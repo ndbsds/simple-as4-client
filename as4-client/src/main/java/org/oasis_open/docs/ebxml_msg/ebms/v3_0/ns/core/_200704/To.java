@@ -11,7 +11,7 @@ import java.util.List;
 
 
 /**
- * &lt;p&gt;Java-Klasse f�r To complex type.
+ * &lt;p&gt;Java-Klasse fuer To complex type.
  * 
  * &lt;p&gt;Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 

@@ -17,7 +17,7 @@ import java.util.Map;
  * 	  Elements replacing the wildcard MUST be namespace qualified, but can be in the targetNamespace
  * 	  
  * 
- * &lt;p&gt;Java-Klasse f�r Header complex type.
+ * &lt;p&gt;Java-Klasse fuer Header complex type.
  * 
  * &lt;p&gt;Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 

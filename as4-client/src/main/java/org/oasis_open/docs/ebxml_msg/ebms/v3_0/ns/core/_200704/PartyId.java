@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.*;
 
 
 /**
- * &lt;p&gt;Java-Klasse f�r PartyId complex type.
+ * &lt;p&gt;Java-Klasse fuer PartyId complex type.
  * 
  * &lt;p&gt;Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 

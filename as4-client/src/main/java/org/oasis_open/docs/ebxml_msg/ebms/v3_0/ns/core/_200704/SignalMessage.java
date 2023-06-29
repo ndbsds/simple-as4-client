@@ -19,7 +19,7 @@ import java.util.List;
  * 				allow it to contain any elements.
  * 			
  * 
- * &lt;p&gt;Java-Klasse f�r SignalMessage complex type.
+ * &lt;p&gt;Java-Klasse fuer SignalMessage complex type.
  * 
  * &lt;p&gt;Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 

@@ -30,7 +30,7 @@ import java.util.Map;
  * 				eb:SignalMessage or eb:UserMessage element must present).
  * 			
  * 
- * &lt;p&gt;Java-Klasse f�r Messaging complex type.
+ * &lt;p&gt;Java-Klasse fuer Messaging complex type.
  * 
  * &lt;p&gt;Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 

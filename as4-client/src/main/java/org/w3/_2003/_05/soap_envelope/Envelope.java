@@ -9,7 +9,7 @@ import java.util.Map;
 
 
 /**
- * &lt;p&gt;Java-Klasse f�r Envelope complex type.
+ * &lt;p&gt;Java-Klasse fuer Envelope complex type.
  * 
  * &lt;p&gt;Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 

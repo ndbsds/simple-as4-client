@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.*;
 
 
 /**
- * &lt;p&gt;Java-Klasse f�r Schema complex type.
+ * &lt;p&gt;Java-Klasse fuer Schema complex type.
  * 
  * &lt;p&gt;Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 
