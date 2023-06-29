@@ -161,6 +161,24 @@ public class As4ClientBuilderInstance implements As4ClientBuilder {
             return as4SetUsernameTokenDetailsInstance;
         }
 
+        /**
+         * Use this to set the crypto, if your project has the ability to load resources and if you want to
+         * specify the username manually.
+         * @param crypto The crypto object, supplying certificate and Private Key
+         * @param cryptoProperties Additional properties required for processing
+         * @param username Manually set username
+         * @return Next step in the builder pattern.
+         */
+        @Override
+        public As4SetPasswordTokenDetails setCrypto(Merlin crypto, Properties cryptoProperties, String username) {
+            this.cryptoProperties = cryptoProperties;
+            this.crypto = crypto;
+            this.username = username;
+
+            as4SetUsernameTokenDetailsInstance = new As4SetPasswordTokenDetailsInstance();
+            return as4SetUsernameTokenDetailsInstance;
+        }
+
         private void setUsernameFromCertificate(Crypto crypto, Properties cryptoProperties) throws KeyStoreException, AS4Exception {
             var certificates = new X509Certificate[] { (X509Certificate)(((Merlin) crypto).getKeyStore()
                     .getCertificate(cryptoProperties.getProperty("org.apache.wss4j.crypto.merlin.keystore.alias"))) };

@@ -18,9 +18,19 @@ public interface As4SetCrypto {
     /**
      * Sets the Crypto object.
      * @param crypto a crypto object containing Keystore/Truststore, which mist be of type "Merlin"
-     * @param crypto the cryptoProperties, describing how the Keystore returned by the crypto object should be handled
+     * @param cryptoProperties the cryptoProperties, describing how the Keystore returned by the crypto object should be handled
      * @return a As4SetPasswordTokenDetails object, which is used to continue the builder pattern and set the password for the crypto.
      * @throws AS4Exception if the crypto object is invalid (for example: does not contain any certificates)
      */
     As4SetPasswordTokenDetails setCrypto(Merlin crypto, Properties cryptoProperties) throws AS4Exception;
+
+    /**
+     * Sets the Crypto object without using the manual username extraction.
+     * @param crypto a crypto object containing Keystore/Truststore, which mist be of type "Merlin"
+     * @param cryptoProperties the cryptoProperties, describing how the Keystore returned by the crypto object should be handled
+     * @param username the username used for transmission
+     * @return a As4SetPasswordTokenDetails object, which is used to continue the builder pattern and set the password for the crypto.
+     * @throws AS4Exception if the crypto object is invalid (for example: does not contain any certificates)
+     */
+    As4SetPasswordTokenDetails setCrypto(Merlin crypto, Properties cryptoProperties, String username) throws AS4Exception;
 }
