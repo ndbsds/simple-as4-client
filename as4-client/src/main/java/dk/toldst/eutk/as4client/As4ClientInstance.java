@@ -3,10 +3,11 @@ import dk.toldst.eutk.as4client.as4.As4DtoCreator;
 import dk.toldst.eutk.as4client.as4.As4HttpClient;
 import dk.toldst.eutk.as4client.as4.As4Message;
 import dk.toldst.eutk.as4client.exceptions.AS4Exception;
-import org.apache.commons.lang.ObjectUtils;
+
 import org.apache.wss4j.common.util.XMLUtils;
 import org.oasis_open.docs.ebxml_msg.ebms.v3_0.ns.core._200704.Messaging;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import javax.xml.soap.SOAPException;
@@ -104,12 +105,20 @@ public class As4ClientInstance implements As4Client {
         SOAPMessage soapMessage;
         try {
             soapMessage = as4HttpClient.sendRequest(messaging, as4Message);
+            as4ClientResponseDto.setRawSoapResponse(readRawSoapResponse(soapMessage));
             as4ClientResponseDto.setFirstAttachment(tryGetFirstAttachment(soapMessage));
             return as4ClientResponseDto;
         } catch (Exception e) {
             throw new AS4Exception("Failed to send (or receive) message" , e);
         }
 
+    }
+
+    private byte[] readRawSoapResponse(SOAPMessage soapMessage) throws SOAPException, IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        soapMessage.writeTo(outputStream);
+
+        return outputStream.toByteArray();
     }
 
     private As4Message.As4Part CreatePart(String message, String fileName) {
@@ -138,6 +147,7 @@ public class As4ClientInstance implements As4Client {
 
             as4ClientResponseDto.setReftoOriginalID(reftoOriginalID);
             as4ClientResponseDto.setFirstAttachment(tryGetFirstAttachment(soapMessage));
+            as4ClientResponseDto.setRawSoapResponse(readRawSoapResponse(soapMessage));
 
             return as4ClientResponseDto;
         } catch (Exception e) {
