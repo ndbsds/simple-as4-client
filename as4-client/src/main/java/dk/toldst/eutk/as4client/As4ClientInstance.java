@@ -99,7 +99,8 @@ public class As4ClientInstance implements As4Client {
         }
 
         as4Message.setMessageProperties(messageProperties);
-        Messaging messaging = as4DtoCreator.createMessaging(service, action, "placeholder", as4Message, messageId);
+        String conversationId = UUID.randomUUID().toString();
+        Messaging messaging = as4DtoCreator.createMessaging(service, action, conversationId, as4Message, messageId);
         As4ClientResponseDto as4ClientResponseDto = new As4ClientResponseDto();
 
         SOAPMessage soapMessage;
