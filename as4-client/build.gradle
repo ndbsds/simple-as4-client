@@ -6,7 +6,7 @@ plugins {
 
 group 'com.nttdata.io.github.skat'
 archivesBaseName = "as4-client"
-version '2.1.5'
+version '2.2.0'
 
 repositories {
     mavenCentral()

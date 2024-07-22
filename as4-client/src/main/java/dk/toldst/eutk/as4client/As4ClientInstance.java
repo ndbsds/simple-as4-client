@@ -1,20 +1,23 @@
 package dk.toldst.eutk.as4client;
-import dk.toldst.eutk.as4client.as4.As4DtoCreator;
-import dk.toldst.eutk.as4client.as4.As4HttpClient;
-import dk.toldst.eutk.as4client.as4.As4Message;
-import dk.toldst.eutk.as4client.exceptions.AS4Exception;
-
-import org.apache.wss4j.common.util.XMLUtils;
-import org.oasis_open.docs.ebxml_msg.ebms.v3_0.ns.core._200704.Messaging;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.Map;
+import java.util.UUID;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPHeader;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.transform.TransformerException;
-import java.util.*;
+
+import org.apache.wss4j.common.util.XMLUtils;
+import org.oasis_open.docs.ebxml_msg.ebms.v3_0.ns.core._200704.Messaging;
+
+import dk.toldst.eutk.as4client.as4.As4DtoCreator;
+import dk.toldst.eutk.as4client.as4.As4HttpClient;
+import dk.toldst.eutk.as4client.as4.As4Message;
+import dk.toldst.eutk.as4client.exceptions.AS4Exception;
 
 public class As4ClientInstance implements As4Client {
 
@@ -143,7 +146,6 @@ public class As4ClientInstance implements As4Client {
         As4ClientResponseDto as4ClientResponseDto = new As4ClientResponseDto();
         try {
             soapMessage = as4HttpClient.sendRequest(messaging, new As4Message());
-            SOAPHeader header = soapMessage.getSOAPHeader();
             String reftoOriginalID =  tryGetReftoOriginalID(soapMessage);
 
             as4ClientResponseDto.setReftoOriginalID(reftoOriginalID);
@@ -157,18 +159,16 @@ public class As4ClientInstance implements As4Client {
                 if (soapMessage != null && soapMessage.getSOAPPart() != null && soapMessage.getSOAPPart().getOwnerDocument() != null) {
                     debugMessage = XMLUtils.prettyDocumentToString(soapMessage.getSOAPPart().getOwnerDocument());
                 }
-            } catch (IOException ex) {
-                throw new AS4Exception("Failed to send (or receive) message" , e);
-            } catch (TransformerException ex) {
+            } catch (IOException | TransformerException ex) {
                 throw new AS4Exception("Failed to send (or receive) message" , e);
             }
-            throw new AS4Exception("Failed to send (or receive) message, recieved from server: " + debugMessage , e);
+			throw new AS4Exception("Failed to send (or receive) message, recieved from server: " + debugMessage , e);
         }
     }
 
-    private String tryGetFirstAttachment(SOAPMessage soapMessage) {
+    private byte[] tryGetFirstAttachment(SOAPMessage soapMessage) {
         try {
-            return new String(soapMessage.getAttachments().next().getDataHandler().getInputStream().readAllBytes());
+            return soapMessage.getAttachments().next().getDataHandler().getInputStream().readAllBytes();
         }
         catch (Exception e){
             return null;

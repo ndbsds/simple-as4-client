@@ -3,16 +3,16 @@ package dk.toldst.eutk.as4client;
 public class As4ClientResponseDto {
 
     private byte[] rawSoapResponse;
-    private String FirstAttachment;
+    private byte[] firstAttachment;
     private String reftoOriginalID;
 
 
-    public String getFirstAttachment() {
-        return FirstAttachment;
+    public byte[] getFirstAttachment() {
+        return firstAttachment;
     }
 
-    public void setFirstAttachment(String firstAttachment) {
-        FirstAttachment = firstAttachment;
+    public void setFirstAttachment(byte[] firstAttachment) {
+        this.firstAttachment = firstAttachment;
     }
 
     public String getReftoOriginalID() {
