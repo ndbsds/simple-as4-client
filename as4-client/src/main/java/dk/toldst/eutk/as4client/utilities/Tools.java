@@ -10,12 +10,12 @@ import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 
 public class Tools {
-    public static StatusResponseType getStatus(String string) throws AS4Exception {
+    public static StatusResponseType getStatus(byte[] attachment) throws AS4Exception {
         StatusResponseType responseType;
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance("dk.skat.mft.dms_declaration_status._1");
             JaxbThreadSafe jaxbThreadSafe = new JaxbThreadSafe(jaxbContext);
-            var element = (JAXBElement<StatusResponseType>) jaxbThreadSafe.unmarshal(new ByteArrayInputStream(string.getBytes(StandardCharsets.UTF_8)));
+            var element = (JAXBElement<StatusResponseType>) jaxbThreadSafe.unmarshal(new ByteArrayInputStream(attachment));
             responseType = element.getValue();
         }
         catch (JAXBException | ClassCastException e){
